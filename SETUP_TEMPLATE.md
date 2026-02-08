@@ -5,10 +5,59 @@ This guide walks you through customizing this template for your project.
 ## Quick Start
 
 1. **Fork or clone this repository**
-2. **Find & replace all placeholders** (listed below)
+2. **Populate placeholders** using one of the methods below
 3. **Customize** `DESIGN_SYSTEM.md` for your UI
 4. **Review** `GUIDELINES.md` tech-specific sections
 5. **Delete this file** when done
+
+---
+
+## Populating the Template
+
+### Option A: Manual Find & Replace
+
+Use your IDE's find-and-replace (Cmd/Ctrl + Shift + H) to update all `{{PLACEHOLDER}}` values. See the Placeholder Reference section below.
+
+### Option B: AI-Assisted Extraction (Recommended for existing specs)
+
+If you have an existing specification document, PRD, or design doc, use AI to extract and populate:
+
+1. **Add your source doc** to the repo:
+   ```bash
+   cp /path/to/your-spec.md docs/SOURCE_SPEC.md
+   ```
+
+2. **Run this prompt** with your AI assistant:
+   ```
+   Read docs/SOURCE_SPEC.md and use it to populate all {{PLACEHOLDER}} values 
+   across this repository. For each file:
+   1. Show me the proposed changes before applying
+   2. Flag any placeholders where the source doc is ambiguous or missing info
+   3. Suggest reasonable defaults where appropriate
+   
+   Start with VISION.md, then ARCHITECTURE.md, then copilot-instructions.md.
+   ```
+
+3. **Review the AI's fill plan** — approve, adjust, or provide missing details
+
+4. **Delete or archive** `docs/SOURCE_SPEC.md` after extraction
+
+### Option C: Interactive Session
+
+If starting from scratch, work through placeholders conversationally:
+
+```
+I'm setting up this AI dev framework for a new project. Let's populate the 
+placeholders together. Ask me questions to fill in VISION.md first, then 
+we'll move to ARCHITECTURE.md.
+```
+
+### Tips for AI Extraction
+
+- **Structured source docs work best** — headings, tables, bullet lists
+- **AI will infer constraints** — review `BANNED_DEPENDENCIES` and `CI_RESTRICTIONS` carefully
+- **Core values need thought** — these guide all future decisions, don't just accept AI suggestions
+- **Tech stack is usually clear** — AI extracts these reliably from any spec
 
 ---
 
@@ -100,6 +149,7 @@ Before starting development, verify:
 - [ ] `ARCHITECTURE.md` has your services listed
 - [ ] `GUIDELINES.md` matches your tech stack
 - [ ] `DESIGN_SYSTEM.md` has your brand colors (if applicable)
+- [ ] `docs/SOURCE_SPEC.md` deleted (if used for AI extraction)
 - [ ] First entry added to `DEV_JOURNAL.md`
 - [ ] This file (`SETUP_TEMPLATE.md`) deleted
 
