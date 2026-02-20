@@ -83,6 +83,15 @@ Use find-and-replace (Cmd/Ctrl + Shift + H) to update all placeholders across th
 | `{{TECH_STACK_DB}}` | Database(s) | `"PostgreSQL 15 + Redis"`, `"MongoDB Atlas"` |
 | `{{TECH_STACK_AI}}` | AI/ML services (optional) | `"OpenAI API"`, `"AWS Bedrock"`, `"Vertex AI"` |
 
+### GitHub Configuration
+
+| Placeholder | Description | Example |
+|-------------|-------------|----------|
+| `{{GITHUB_OWNER}}` | GitHub username or org | `"my-org"`, `"jsmith"` |
+| `{{GITHUB_REPO}}` | Repository name | `"my-project"` |
+| `{{DEFAULT_BRANCH}}` | Default branch name | `"main"` |
+| `{{DEV_BRANCH}}` | Development branch | `"dev"`, `"develop"` |
+
 ### Deployment
 
 | Placeholder | Description | Example |
@@ -103,6 +112,7 @@ Use find-and-replace (Cmd/Ctrl + Shift + H) to update all placeholders across th
 | `{{BANNED_DEP_2_REASON}}` | Why it's banned | `"Replace with OpenTelemetry"` |
 | `{{PREFERRED_SERVICES}}` | Services to prioritize | `"AWS managed services"`, `"GCP native services"` |
 | `{{CI_RESTRICTIONS}}` | What can't run locally | `"Never run terraform apply locally — CI/CD only"` |
+| `{{INFRA_DIR}}` | Infrastructure code directory | `"infra"`, `"terraform"`, `"infrastructure"` |
 
 ### Vision / Core Values
 
@@ -114,6 +124,30 @@ Use find-and-replace (Cmd/Ctrl + Shift + H) to update all placeholders across th
 | `{{CORE_VALUE_2_DESCRIPTION}}` | Description | `"All dependencies must be public/open-source."` |
 | `{{CORE_VALUE_3_NAME}}` | Third principle name | `"Documentation Driven"` |
 | `{{CORE_VALUE_3_DESCRIPTION}}` | Description | `"Code follows the docs, not the other way around."` |
+| `{{VISION_VALUES}}` | Formatted core values block | See example below |
+
+**`{{VISION_VALUES}}` Example Format:**
+```markdown
+- **{{CORE_VALUE_1_NAME}}:** {{CORE_VALUE_1_DESCRIPTION}}
+- **{{CORE_VALUE_2_NAME}}:** {{CORE_VALUE_2_DESCRIPTION}}
+- **{{CORE_VALUE_3_NAME}}:** {{CORE_VALUE_3_DESCRIPTION}}
+```
+
+### MCP Tools Configuration
+
+| Placeholder | Description | Example |
+|-------------|-------------|----------|
+| `{{MCP_TOOLS_TABLE}}` | Table of available MCP servers/tools | See example below |
+
+**`{{MCP_TOOLS_TABLE}}` Example Format:**
+```markdown
+| Server | Tools | Used By |
+|--------|-------|---------|
+| **Chrome DevTools** | Screenshots, console, network, DOM | Bug Hunter, RCA Worker |
+| **GitHub** | PRs, issues, code search | Bug Hunter, Code Reviewer, PRD Architect |
+```
+
+If you don't use MCP tools, replace with: `*No MCP tools configured.*`
 
 ### Team
 
@@ -137,6 +171,22 @@ After replacing placeholders, review these files for project-specific content:
 | `docs/DESIGN_SYSTEM.md` | Color palette, typography, UI patterns |
 | `docs/BACKLOG.md` | Your actual epics and stories |
 | `docs/prd/PRD-TEMPLATE.md` | Vision alignment checklist (core value names) |
+| `docs/DATA_DICTIONARY.md` | Field names and types for your entities |
+| `.github/agents/` | Enable/disable agents for your workflow |
+
+### Agent Configuration
+
+The template includes 7 specialist agents in `.github/agents/`. Review and customize:
+
+| Agent | Keep If... | Remove If... |
+|-------|------------|---------------|
+| **Bug Hunter** | You want structured bug investigation | N/A (always useful) |
+| **Code Reviewer** | You use GitHub PRs for review | No code review workflow |
+| **Terraform Guardian** | Using Terraform for IaC | Different IaC tool (adapt or remove) |
+| **Debt Logger** | You track technical debt | N/A (always useful) |
+| **Decision Architect** | You document architectural decisions | No ADR practice |
+| **PRD Architect** | You write PRDs for features | No PRD workflow |
+| **RCA Worker** | You do root cause analysis | N/A (always useful) |
 
 ---
 
@@ -161,7 +211,7 @@ This template implements an **AI-augmented development workflow** with these cor
 
 | Protocol | Purpose | Trigger |
 |----------|---------|---------|
-| **5-Step Consistency Check** | Validate every code change | Before any code generation |
+| **6-Step Consistency Check** | Validate every code change | Before any code generation |
 | **PRD Protocol** | Document new features | New feature requests |
 | **Debt Protocol** | Track shortcuts | Hacks or skipped best practices |
 | **Bug Protocol** | Track defects | Bug discovery |

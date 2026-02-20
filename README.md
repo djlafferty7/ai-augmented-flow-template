@@ -7,6 +7,7 @@ A structured template for building software projects with AI coding assistants (
 This template provides:
 
 - **Copilot Instructions** — AI agent behavior rules that enforce your standards
+- **7 Specialist Agents** — Bug Hunter, Code Reviewer, Terraform Guardian, and more
 - **7 Core Protocols** — Debt, Bug, PRD, Post-Task, Pre-Commit, Decision, Consistency
 - **Living Documentation** — Journal, debt registry, bug tracker, backlog
 - **PRD & ADR Templates** — Structured feature requests and architectural decisions
@@ -15,13 +16,22 @@ This template provides:
 
 ```
 .github/
-└── copilot-instructions.md    # AI agent behavior configuration
+├── copilot-instructions.md    # AI agent behavior configuration
+└── agents/                    # Specialist agents
+    ├── bug-hunter.agent.md
+    ├── code-reviewer.agent.md
+    ├── debt-logger.agent.md
+    ├── decision-architect.agent.md
+    ├── prd-architect.agent.md
+    ├── rca-worker.agent.md
+    └── terraform-guardian.agent.md
 
 docs/
 ├── VISION.md                  # Product vision & core values
 ├── ARCHITECTURE.md            # Technical architecture & infrastructure
 ├── GUIDELINES.md              # Coding standards & workflow rules
 ├── DESIGN_SYSTEM.md           # UI/UX patterns & visual standards
+├── DATA_DICTIONARY.md         # Canonical field names & schemas
 ├── TECHNICAL_DEBT.md          # Living debt registry
 ├── BUGS.md                    # Bug tracking with priority levels
 ├── DEV_JOURNAL.md             # Reverse-chronological activity log
@@ -49,13 +59,29 @@ README.md                      # This file
 
 | Protocol | Triggers When | What Happens |
 |----------|---------------|--------------|
-| **5-Step Consistency** | Before any code | Validates against VISION, ARCHITECTURE, DESIGN_SYSTEM |
+| **6-Step Consistency** | Before any code | Validates against VISION, ARCHITECTURE, DESIGN_SYSTEM, DATA_DICTIONARY |
 | **PRD Protocol** | New feature request | Creates structured PRD → approval → backlog items |
 | **Debt Protocol** | Shortcut taken | Logs to TECHNICAL_DEBT.md (halts for HIGH severity) |
 | **Bug Protocol** | Bug discovered | Logs to BUGS.md (halts for P0/P1) |
 | **Post-Task Protocol** | Task completed | Logs to DEV_JOURNAL.md |
 | **Pre-Commit Protocol** | Ready to commit | Suggests conventional commit message |
 | **Decision Protocol** | Architectural choice | Options table → recommendation → rationale |
+
+## 🤖 Specialist Agents
+
+The framework includes pre-built specialist agents for common workflows:
+
+| Agent | Type | Description |
+|-------|------|-------------|
+| **Bug Hunter** | User-accessible | Systematic bug investigation with RCA workflow |
+| **Code Reviewer** | User-accessible | PR review and comment resolution |
+| **Terraform Guardian** | User-accessible | Infrastructure-as-code enforcement |
+| **RCA Worker** | Subagent | Read-only root cause analysis (5 Whys) |
+| **Debt Logger** | Subagent | Technical debt tracking and severity assessment |
+| **PRD Architect** | Subagent | PRD creation with vision alignment |
+| **Decision Architect** | Subagent | Options analysis with ADR creation |
+
+Switch to user-accessible agents via the agent dropdown. Subagents are invoked automatically by other agents.
 
 ## 📋 Key Documents
 
@@ -66,6 +92,7 @@ README.md                      # This file
 | `BUGS.md` | Bug registry | When bugs are found |
 | `BACKLOG.md` | Sprint planning | As work is planned/completed |
 | `ARCHITECTURE.md` | System design | When infrastructure changes |
+| `DATA_DICTIONARY.md` | Field names & schemas | When new entities are defined |
 
 ## 🛠️ Customization
 
