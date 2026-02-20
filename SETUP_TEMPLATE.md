@@ -157,6 +157,21 @@ If you don't use MCP tools, replace with: `*No MCP tools configured.*`
 | `{{PRIMARY_USER_DESCRIPTION}}` | Primary user persona | `"DevOps engineers managing infrastructure"` |
 | `{{SECONDARY_USER_DESCRIPTION}}` | Secondary user persona | `"Business analysts viewing dashboards"` |
 
+### Development Workflow
+
+| Placeholder | Description | Example |
+|-------------|-------------|----------|
+| `{{INSTALL_COMMAND}}` | Install dependencies | `"poetry install"`, `"npm install"` |
+| `{{TEST_COMMAND}}` | Run tests | `"pytest"`, `"npm test"` |
+| `{{UNIT_TEST_COMMAND}}` | Run unit tests | `"pytest tests/unit"` |
+| `{{INTEGRATION_TEST_COMMAND}}` | Run integration tests | `"pytest tests/integration"` |
+| `{{BACKEND_INSTALL_COMMAND}}` | Backend setup | `"cd api && poetry install"` |
+| `{{FRONTEND_INSTALL_COMMAND}}` | Frontend setup | `"cd frontend && npm install"` |
+| `{{BACKEND_STANDARDS}}` | Backend code standards | `"PEP8, type hints required"` |
+| `{{FRONTEND_STANDARDS}}` | Frontend code standards | `"ESLint + Prettier, strict TypeScript"` |
+| `{{LICENSE_TYPE}}` | Project license | `"MIT"`, `"Apache-2.0"`, `"Proprietary"` |
+| `{{COMMUNICATION_CHANNEL}}` | Team communication | `"#project-channel on Slack"` |
+
 ---
 
 ## Files to Customize
@@ -172,6 +187,8 @@ After replacing placeholders, review these files for project-specific content:
 | `docs/BACKLOG.md` | Your actual epics and stories |
 | `docs/prd/PRD-TEMPLATE.md` | Vision alignment checklist (core value names) |
 | `docs/DATA_DICTIONARY.md` | Field names and types for your entities |
+| `docs/SETUP.md` | Prerequisites, install commands, deployment steps |
+| `docs/CONTRIBUTING.md` | Code standards, PR process, testing commands |
 | `.github/agents/` | Enable/disable agents for your workflow |
 
 ### Agent Configuration

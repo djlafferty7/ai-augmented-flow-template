@@ -32,6 +32,8 @@ docs/
 ├── GUIDELINES.md              # Coding standards & workflow rules
 ├── DESIGN_SYSTEM.md           # UI/UX patterns & visual standards
 ├── DATA_DICTIONARY.md         # Canonical field names & schemas
+├── SETUP.md                   # Developer setup & deployment
+├── CONTRIBUTING.md            # Contribution guidelines
 ├── TECHNICAL_DEBT.md          # Living debt registry
 ├── BUGS.md                    # Bug tracking with priority levels
 ├── DEV_JOURNAL.md             # Reverse-chronological activity log
