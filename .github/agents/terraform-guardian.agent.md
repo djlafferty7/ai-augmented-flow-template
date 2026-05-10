@@ -3,7 +3,7 @@
 name: Terraform Guardian
 description: Enforces infrastructure-as-code standards and prevents manual resource creation
 user-invokable: true
-tools: ['read', 'edit', 'search', 'grep', 'run_in_terminal', 'create_file', 'mcp_github/*']
+tools: ['read', 'edit', 'search', 'grep', 'run_in_terminal', 'create_file', 'mcp_github/*', 'mcp_gcp/*']
 handoffs:
   - label: Update Architecture Docs
     agent: agent
@@ -29,6 +29,8 @@ All infrastructure MUST be defined in `{{INFRA_DIR}}/` Terraform modules:
 | Resource Type | Module Location |
 |--------------|-----------------|
 | Compute services | `{{INFRA_DIR}}/modules/compute/` |
+| Cloud Run services | `{{INFRA_DIR}}/modules/cloudrun/` |
+| Firebase / Firestore | `{{INFRA_DIR}}/modules/firebase/` |
 | IAM/permissions | `{{INFRA_DIR}}/modules/iam/` |
 | CI/CD resources | `{{INFRA_DIR}}/modules/cicd/` |
 | Messaging/queues | `{{INFRA_DIR}}/modules/messaging/` |

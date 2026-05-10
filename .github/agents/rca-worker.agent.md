@@ -31,7 +31,7 @@ Use read-only tools to trace the issue:
 Check if documentation gaps contributed:
 1. Search `docs/` for related specifications
 2. Check relevant PRD in `docs/prd/` for missing requirements
-3. Check `docs/ARCHITECTURE.md` for undocumented patterns
+3. Check `docs/STANDARDS.md` for undocumented patterns
 4. Note any gaps where documentation would have prevented this bug
 
 ### Step 4: Related Technical Debt
@@ -71,6 +71,6 @@ Include Chrome DevTools findings in the RCA summary under "Symptom Evidence".
 ## Reference Materials
 - Check `docs/ARCHITECTURE.md` for system design context
 - Check relevant PRD in `docs/prd/` for requirements
-- Check `docs/TECHNICAL_DEBT.md` for known issues that might relate
+- Search GitHub Issues labeled `tech-debt` for known issues that might relate
 
 ````

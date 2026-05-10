@@ -62,15 +62,7 @@ cd {{GITHUB_REPO}}
 {{FRONTEND_INSTALL_COMMAND}}
 ```
 
-### 3. Set Up Pre-commit Hooks
-
-```bash
-pip install pre-commit
-pre-commit install
-pre-commit install --hook-type commit-msg
-```
-
-### 4. Configure Local Environment
+### 3. Configure Local Environment
 
 ```bash
 cp .env.example .env
@@ -184,8 +176,8 @@ gcloud logging read "resource.labels.service_name={{SERVICE_NAME}}" --limit=50
 
 ### Getting Help
 
-- Check `docs/BUGS.md` for known issues
-- Review `docs/TECHNICAL_DEBT.md` for known limitations
+- Check GitHub Issues for known bugs: https://github.com/{{GITHUB_OWNER}}/{{GITHUB_REPO}}/issues?q=label%3Abug
+- Search GitHub Issues labeled `tech-debt` for known limitations
 - Open an issue: https://github.com/{{GITHUB_OWNER}}/{{GITHUB_REPO}}/issues
 
 ---

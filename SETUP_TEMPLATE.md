@@ -1,4 +1,4 @@
-# 🛠️ Template Setup Guide
+# Template Setup Guide
 
 This guide walks you through customizing this template for your project.
 
@@ -6,9 +6,10 @@ This guide walks you through customizing this template for your project.
 
 1. **Fork or clone this repository**
 2. **Populate placeholders** using one of the methods below
-3. **Customize** `DESIGN_SYSTEM.md` for your UI
-4. **Review** `GUIDELINES.md` tech-specific sections
-5. **Delete this file** when done
+3. **Set up MCP servers** — follow `docs/MCP_SETUP.md` (GitHub MCP is required)
+4. **Customize** `docs/STANDARDS.md` for your tech stack
+5. **Create initial GitHub Issues** for your backlog
+6. **Delete this file** when done
 
 ---
 
@@ -35,7 +36,12 @@ If you have an existing specification document, PRD, or design doc, use AI to ex
    2. Flag any placeholders where the source doc is ambiguous or missing info
    3. Suggest reasonable defaults where appropriate
    
-   Start with VISION.md, then ARCHITECTURE.md, then copilot-instructions.md.
+   After populating placeholders:
+   4. Create GitHub Issues for the initial backlog (epics, stories, tasks)
+   5. Create GitHub Issues with `tech-debt` label if the spec mentions known shortcuts or TODOs
+   6. Customize STANDARDS.md with project-specific coding conventions
+   
+   Start with VISION.md, then ARCHITECTURE.md, then AGENTS.md.
    ```
 
 3. **Review the AI's fill plan** — approve, adjust, or provide missing details
@@ -49,7 +55,7 @@ If starting from scratch, work through placeholders conversationally:
 ```
 I'm setting up this AI dev framework for a new project. Let's populate the 
 placeholders together. Ask me questions to fill in VISION.md first, then 
-we'll move to ARCHITECTURE.md.
+we'll move to ARCHITECTURE.md and AGENTS.md.
 ```
 
 ### Tips for AI Extraction
@@ -61,6 +67,25 @@ we'll move to ARCHITECTURE.md.
 
 ---
 
+## Setting Up from a Spec File
+
+The most common setup flow: you have an existing spec/PRD and want to bootstrap the entire project.
+
+### Step-by-step:
+
+1. **Add your spec** to `docs/SOURCE_SPEC.md`
+2. **Use Option B above** to populate all placeholders
+3. **Review AGENTS.md** — this is the central identity file. Ensure tech stack, core values, and approval model are correct.
+4. **Configure MCP servers** — follow `docs/MCP_SETUP.md`. At minimum you need GitHub MCP.
+5. **Use the PRD Architect agent** to create initial PRDs from your spec:
+   ```
+   @prd-architect Create a PRD from docs/SOURCE_SPEC.md for [feature name]
+   ```
+   The agent will interview you, review open issues, and create structured PRDs with GitHub Issues.
+6. **Delete** `docs/SOURCE_SPEC.md` and `SETUP_TEMPLATE.md` when done.
+
+---
+
 ## Placeholder Reference
 
 Use find-and-replace (Cmd/Ctrl + Shift + H) to update all placeholders across the repository.
@@ -69,108 +94,78 @@ Use find-and-replace (Cmd/Ctrl + Shift + H) to update all placeholders across th
 
 | Placeholder | Description | Example |
 |-------------|-------------|---------|
-| `{{PROJECT_NAME}}` | Your product/project name | `"MyApp"`, `"DataPipeline"` |
+| `{{PROJECT_NAME}}` | Your product/project name | `"MyApp"` |
 | `{{PROJECT_GOAL}}` | High-level project objective | `"Launch MVP by Q2 2026"` |
 | `{{VALUE_PROPOSITION}}` | One-sentence value statement | `"An analytics platform that transforms raw data into actionable insights."` |
 
 ### Tech Stack
 
-| Placeholder | Description | Example |
-|-------------|-------------|---------|
-| `{{TECH_STACK_BACKEND}}` | Backend language/framework | `"Python 3.11+ (FastAPI)"`, `"Node.js 20+ (Express)"` |
-| `{{TECH_STACK_FRONTEND}}` | Frontend framework | `"React 18 + TypeScript"`, `"Vue 3 + Nuxt"` |
-| `{{TECH_STACK_INFRA}}` | Infrastructure/IaC | `"AWS CDK"`, `"Terraform + GCP"`, `"Pulumi + Azure"` |
-| `{{TECH_STACK_DB}}` | Database(s) | `"PostgreSQL 15 + Redis"`, `"MongoDB Atlas"` |
-| `{{TECH_STACK_AI}}` | AI/ML services (optional) | `"OpenAI API"`, `"AWS Bedrock"`, `"Vertex AI"` |
+| Placeholder | Description | Default Example |
+|-------------|-------------|-----------------|
+| `{{TECH_STACK_BACKEND}}` | Backend language/framework | `"Python 3.11+ (FastAPI)"` |
+| `{{TECH_STACK_FRONTEND}}` | Frontend framework | `"SvelteKit + TypeScript"` |
+| `{{TECH_STACK_INFRA}}` | Infrastructure/IaC | `"Terraform + GCP"` |
+| `{{TECH_STACK_DB}}` | Database(s) | `"Cloud SQL (PostgreSQL) + Firestore"` |
+| `{{TECH_STACK_AI}}` | AI/ML services (optional) | `"Vertex AI"` |
 
 ### GitHub Configuration
 
 | Placeholder | Description | Example |
 |-------------|-------------|----------|
-| `{{GITHUB_OWNER}}` | GitHub username or org | `"my-org"`, `"jsmith"` |
+| `{{GITHUB_OWNER}}` | GitHub username or org | `"my-org"` |
 | `{{GITHUB_REPO}}` | Repository name | `"my-project"` |
 | `{{DEFAULT_BRANCH}}` | Default branch name | `"main"` |
-| `{{DEV_BRANCH}}` | Development branch | `"dev"`, `"develop"` |
+| `{{DEV_BRANCH}}` | Development branch | `"dev"` |
 
 ### Deployment
 
-| Placeholder | Description | Example |
-|-------------|-------------|---------|
-| `{{TARGET_PLATFORM}}` | Deployment target | `"AWS ECS"`, `"GCP Cloud Run"`, `"Vercel"` |
-| `{{DEPLOY_REGION}}` | Primary region | `"us-east-1"`, `"europe-west2"` |
+| Placeholder | Description | Default Example |
+|-------------|-------------|-----------------|
+| `{{TARGET_PLATFORM}}` | Deployment target | `"GCP Cloud Run"` |
+| `{{DEPLOY_REGION}}` | Primary region | `"us-central1"` |
 | `{{PROJECT_ID}}` | Cloud project/account ID | `"my-project-prod-123"` |
-| `{{CURRENT_PHASE}}` | Current project phase | `"MVP Development"`, `"Phase 2: Scale"` |
+| `{{CURRENT_PHASE}}` | Current project phase | `"MVP Development"` |
 
 ### Constraints
 
 | Placeholder | Description | Example |
 |-------------|-------------|---------|
-| `{{BANNED_DEPENDENCIES}}` | Dependencies to avoid | `"jQuery, Moment.js"`, `"internal-corp-lib"` |
-| `{{BANNED_DEP_1}}` | First banned dependency | `"legacy-auth-lib"` |
-| `{{BANNED_DEP_1_REASON}}` | Why it's banned | `"Deprecated, use OAuth2 standard"` |
-| `{{BANNED_DEP_2}}` | Second banned dependency | `"proprietary-logger"` |
-| `{{BANNED_DEP_2_REASON}}` | Why it's banned | `"Replace with OpenTelemetry"` |
-| `{{PREFERRED_SERVICES}}` | Services to prioritize | `"AWS managed services"`, `"GCP native services"` |
+| `{{BANNED_DEPENDENCIES}}` | Dependencies to avoid | `"jQuery, Moment.js"` |
+| `{{PREFERRED_SERVICES}}` | Services to prioritize | `"GCP native services"` |
 | `{{CI_RESTRICTIONS}}` | What can't run locally | `"Never run terraform apply locally — CI/CD only"` |
-| `{{INFRA_DIR}}` | Infrastructure code directory | `"infra"`, `"terraform"`, `"infrastructure"` |
+| `{{INFRA_DIR}}` | Infrastructure code directory | `"terraform"` |
 
 ### Vision / Core Values
 
 | Placeholder | Description | Example |
 |-------------|-------------|---------|
-| `{{CORE_VALUE_1_NAME}}` | First guiding principle name | `"Cloud Native First"` |
+| `{{CORE_VALUE_1_NAME}}` | First guiding principle | `"Cloud Native First"` |
 | `{{CORE_VALUE_1_DESCRIPTION}}` | Description | `"Use managed services. Avoid custom implementations."` |
-| `{{CORE_VALUE_2_NAME}}` | Second principle name | `"Zero Proprietary Debt"` |
+| `{{CORE_VALUE_2_NAME}}` | Second principle | `"Zero Proprietary Debt"` |
 | `{{CORE_VALUE_2_DESCRIPTION}}` | Description | `"All dependencies must be public/open-source."` |
-| `{{CORE_VALUE_3_NAME}}` | Third principle name | `"Documentation Driven"` |
-| `{{CORE_VALUE_3_DESCRIPTION}}` | Description | `"Code follows the docs, not the other way around."` |
-| `{{VISION_VALUES}}` | Formatted core values block | See example below |
+| `{{CORE_VALUE_3_NAME}}` | Third principle | `"User Has Final Say"` |
+| `{{CORE_VALUE_3_DESCRIPTION}}` | Description | `"AI proposes, humans approve. No autonomous high-risk changes."` |
+| `{{VISION_VALUES}}` | Formatted core values block | See AGENTS.md |
 
-**`{{VISION_VALUES}}` Example Format:**
-```markdown
-- **{{CORE_VALUE_1_NAME}}:** {{CORE_VALUE_1_DESCRIPTION}}
-- **{{CORE_VALUE_2_NAME}}:** {{CORE_VALUE_2_DESCRIPTION}}
-- **{{CORE_VALUE_3_NAME}}:** {{CORE_VALUE_3_DESCRIPTION}}
-```
-
-### MCP Tools Configuration
+### MCP & Tools
 
 | Placeholder | Description | Example |
 |-------------|-------------|----------|
-| `{{MCP_TOOLS_TABLE}}` | Table of available MCP servers/tools | See example below |
+| `{{MCP_TOOLS_TABLE}}` | Table of configured MCP servers | See AGENTS.md |
 
-**`{{MCP_TOOLS_TABLE}}` Example Format:**
-```markdown
-| Server | Tools | Used By |
-|--------|-------|---------|
-| **Chrome DevTools** | Screenshots, console, network, DOM | Bug Hunter, RCA Worker |
-| **GitHub** | PRs, issues, code search | Bug Hunter, Code Reviewer, PRD Architect |
-```
-
-If you don't use MCP tools, replace with: `*No MCP tools configured.*`
-
-### Team
+### Team & Workflow
 
 | Placeholder | Description | Example |
 |-------------|-------------|---------|
-| `{{TEAM_COMPOSITION}}` | Team roles | `"Tech Lead, 2 Engineers, 1 Designer"` |
-| `{{PRIMARY_USER_DESCRIPTION}}` | Primary user persona | `"DevOps engineers managing infrastructure"` |
-| `{{SECONDARY_USER_DESCRIPTION}}` | Secondary user persona | `"Business analysts viewing dashboards"` |
-
-### Development Workflow
-
-| Placeholder | Description | Example |
-|-------------|-------------|----------|
-| `{{INSTALL_COMMAND}}` | Install dependencies | `"poetry install"`, `"npm install"` |
-| `{{TEST_COMMAND}}` | Run tests | `"pytest"`, `"npm test"` |
+| `{{TEAM_COMPOSITION}}` | Team roles | `"Solo developer + AI agents"` |
+| `{{PRIMARY_USER_DESCRIPTION}}` | Primary user persona | `"Small business owners"` |
+| `{{SECONDARY_USER_DESCRIPTION}}` | Secondary user persona | `"Team administrators"` |
+| `{{INSTALL_COMMAND}}` | Install dependencies | `"poetry install && cd frontend && npm install"` |
+| `{{TEST_COMMAND}}` | Run tests | `"pytest && cd frontend && npm test"` |
 | `{{UNIT_TEST_COMMAND}}` | Run unit tests | `"pytest tests/unit"` |
 | `{{INTEGRATION_TEST_COMMAND}}` | Run integration tests | `"pytest tests/integration"` |
-| `{{BACKEND_INSTALL_COMMAND}}` | Backend setup | `"cd api && poetry install"` |
-| `{{FRONTEND_INSTALL_COMMAND}}` | Frontend setup | `"cd frontend && npm install"` |
-| `{{BACKEND_STANDARDS}}` | Backend code standards | `"PEP8, type hints required"` |
-| `{{FRONTEND_STANDARDS}}` | Frontend code standards | `"ESLint + Prettier, strict TypeScript"` |
-| `{{LICENSE_TYPE}}` | Project license | `"MIT"`, `"Apache-2.0"`, `"Proprietary"` |
-| `{{COMMUNICATION_CHANNEL}}` | Team communication | `"#project-channel on Slack"` |
+| `{{LICENSE_TYPE}}` | Project license | `"MIT"` |
+| `{{COMMUNICATION_CHANNEL}}` | Team communication | `"GitHub Discussions"` |
 
 ---
 
@@ -180,30 +175,29 @@ After replacing placeholders, review these files for project-specific content:
 
 | File | What to Customize |
 |------|-------------------|
+| `AGENTS.md` | Tech stack, core values, MCP tools table |
 | `docs/VISION.md` | Core values, target audience details |
 | `docs/ARCHITECTURE.md` | Services list, data flow, infrastructure details |
-| `docs/GUIDELINES.md` | Coding standards for your specific stack |
+| `docs/STANDARDS.md` | Coding conventions for your specific stack |
 | `docs/DESIGN_SYSTEM.md` | Color palette, typography, UI patterns |
-| `docs/BACKLOG.md` | Your actual epics and stories |
-| `docs/prd/PRD-TEMPLATE.md` | Vision alignment checklist (core value names) |
 | `docs/DATA_DICTIONARY.md` | Field names and types for your entities |
 | `docs/SETUP.md` | Prerequisites, install commands, deployment steps |
 | `docs/CONTRIBUTING.md` | Code standards, PR process, testing commands |
+| `docs/prd/PRD-TEMPLATE.md` | Vision alignment checklist (core value names) |
+| `.github/instructions/` | Tech-specific conventions for each file type |
 | `.github/agents/` | Enable/disable agents for your workflow |
 
 ### Agent Configuration
 
-The template includes 7 specialist agents in `.github/agents/`. Review and customize:
-
-| Agent | Keep If... | Remove If... |
-|-------|------------|---------------|
-| **Bug Hunter** | You want structured bug investigation | N/A (always useful) |
-| **Code Reviewer** | You use GitHub PRs for review | No code review workflow |
-| **Terraform Guardian** | Using Terraform for IaC | Different IaC tool (adapt or remove) |
-| **Debt Logger** | You track technical debt | N/A (always useful) |
-| **Decision Architect** | You document architectural decisions | No ADR practice |
-| **PRD Architect** | You write PRDs for features | No PRD workflow |
-| **RCA Worker** | You do root cause analysis | N/A (always useful) |
+| Agent | Type | Keep If... |
+|-------|------|------------|
+| **Bug Hunter** | User-accessible | Always useful |
+| **Code Reviewer** | User-accessible | You use GitHub PRs |
+| **Terraform Guardian** | User-accessible | You use Terraform for IaC |
+| **PRD Architect** | User-accessible | You write PRDs for features |
+| **Debt Logger** | Subagent | Always useful |
+| **Decision Architect** | Subagent | You document architectural decisions |
+| **RCA Worker** | Subagent | Always useful |
 
 ---
 
@@ -212,28 +206,12 @@ The template includes 7 specialist agents in `.github/agents/`. Review and custo
 Before starting development, verify:
 
 - [ ] All `{{PLACEHOLDER}}` strings replaced (grep for `{{`)
-- [ ] `VISION.md` reflects your actual project goals
-- [ ] `ARCHITECTURE.md` has your services listed
-- [ ] `GUIDELINES.md` matches your tech stack
-- [ ] `DESIGN_SYSTEM.md` has your brand colors (if applicable)
+- [ ] `AGENTS.md` customized with project identity and core values
+- [ ] `docs/VISION.md` reflects your actual project goals
+- [ ] `docs/ARCHITECTURE.md` has your services listed
+- [ ] `docs/STANDARDS.md` matches your tech stack
+- [ ] `docs/DESIGN_SYSTEM.md` has your brand colors (if applicable)
+- [ ] MCP servers configured and tested (at minimum: GitHub)
+- [ ] Initial GitHub Issues created for your backlog
 - [ ] `docs/SOURCE_SPEC.md` deleted (if used for AI extraction)
-- [ ] First entry added to `DEV_JOURNAL.md`
 - [ ] This file (`SETUP_TEMPLATE.md`) deleted
-
----
-
-## Framework Overview
-
-This template implements an **AI-augmented development workflow** with these core protocols:
-
-| Protocol | Purpose | Trigger |
-|----------|---------|---------|
-| **6-Step Consistency Check** | Validate every code change | Before any code generation |
-| **PRD Protocol** | Document new features | New feature requests |
-| **Debt Protocol** | Track shortcuts | Hacks or skipped best practices |
-| **Bug Protocol** | Track defects | Bug discovery |
-| **Post-Task Protocol** | Journal completed work | After completing any task |
-| **Pre-Commit Protocol** | Standardize commits | Before git commit |
-| **Decision Protocol** | Document choices | Architectural decisions |
-
-See `.github/copilot-instructions.md` for full protocol definitions.
