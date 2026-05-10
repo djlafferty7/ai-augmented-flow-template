@@ -97,6 +97,7 @@ Check existing ADRs in `docs/decisions/` and use next sequential number.
 ## Reference Materials
 - Vision: `docs/VISION.md`
 - Architecture: `docs/ARCHITECTURE.md`
+- Standards: `docs/STANDARDS.md`
 - Existing ADRs: `docs/decisions/ADR-*.md`
 - ADR Template: `docs/decisions/ADR-TEMPLATE.md`
 

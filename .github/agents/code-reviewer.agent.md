@@ -49,7 +49,17 @@ For each reviewer comment:
 4. **Propose fix** — provide the corrected code
 5. **Explain reasoning** — justify the change (or explain why it's not needed)
 
-### Step 4: Output Format
+### Step 4: Boy Scout Rule Check
+
+While reviewing changed files, look for nearby small improvements:
+- Stale comments or outdated TODOs
+- Missing type hints on adjacent functions
+- Inconsistent naming near the changed code
+- Simple refactors that improve readability
+
+Flag these as "Low/Nit" suggestions — don't block the PR for them.
+
+### Step 5: Output Format
 
 ```
 ## PR Review: #{PR_NUMBER}
@@ -69,8 +79,16 @@ For each reviewer comment:
 ### Summary
 - **Comments addressed:** X/Y
 - **Declined with reasoning:** Z
+- **Boy Scout improvements:** N suggestions
 - **Tech debt identified:** (invoke Debt Logger if any)
 ```
+
+### Step 6: Verification Loop
+
+After applying fixes:
+1. Run relevant tests in the terminal
+2. If tests fail → fix and re-run
+3. Only mark review complete after green test run
 
 ---
 
@@ -109,7 +127,6 @@ Typical automated review comment patterns:
 
 ## Reference Materials
 - Architecture: `docs/ARCHITECTURE.md`
-- Guidelines: `docs/GUIDELINES.md`
-- Technical Debt: `docs/TECHNICAL_DEBT.md`
+- Standards: `docs/STANDARDS.md`
 
 ````

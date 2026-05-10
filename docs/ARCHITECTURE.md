@@ -18,9 +18,9 @@
 |---------|-------------|------|--------|
 | `example-service` | Example service description | 8080 | Planned |
 
-## ⛔ BANNED DEPENDENCIES
+## Banned Dependencies
 
-*The following must NOT be used:*
+*See `STANDARDS.md` for the full dependency constraints. Key bans:*
 
 <!-- Customize based on your constraints -->
 

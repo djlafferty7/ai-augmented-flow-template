@@ -70,14 +70,34 @@
 - **UI Components:** [New panels, modals, etc.?]
 - **Existing Patterns:** [Follows established conventions?]
 
-## 9. Out of Scope
+## 9. Effort Estimation
+
+| Component | T-Shirt Size | Notes |
+|-----------|-------------|-------|
+| Backend | S / M / L / XL | |
+| Frontend | S / M / L / XL | |
+| Infrastructure | S / M / L / XL | |
+| Testing | S / M / L / XL | |
+| **Total** | **S / M / L / XL** | |
+
+*T-shirt sizes: S = hours, M = 1-2 days, L = 3-5 days, XL = 1+ weeks*
+
+## 10. Tech Debt Opportunities
+
+*Reference: GitHub Issues with `tech-debt` label. Can this feature address existing debt?*
+
+| Issue # | Description | Can Address? | How |
+|---------|-------------|-------------|-----|
+| #XXX | | Yes / No / Partial | |
+
+## 11. Out of Scope
 
 *Explicitly list what this PRD does NOT cover to prevent scope creep.*
 
 - ...
 - ...
 
-## 10. Open Questions
+## 12. Open Questions
 
 *Unresolved decisions that need stakeholder input.*
 
@@ -85,13 +105,13 @@
 |----------|-------|----------|------------|
 | | | | |
 
-## 11. Backlog Items Generated
+## 13. GitHub Issues Generated
 
-*After approval, extract these tasks to `BACKLOG.md` with a link back to this PRD.*
+*After approval, create GitHub Issues for each task. Link back to this PRD.*
 
-| Phase | Task | PRD Reference |
-|-------|------|---------------|
-| Phase X | `- [ ] **Task Title:**` | `(PRD: [PRD-XXX](prd/PRD-XXX-slug.md))` |
+| Issue | Title | Labels | PRD Reference |
+|-------|-------|--------|---------------|
+| #TBD | Task title | `feature`, `phase-X` | PRD-XXX |
 
 ---
 
@@ -109,5 +129,6 @@
 
 - `VISION.md` — Core values
 - `ARCHITECTURE.md` — Technical patterns and infrastructure
+- `STANDARDS.md` — Coding standards and principles
 - `DESIGN_SYSTEM.md` — Visual standards
 - [External links, research, etc.]

@@ -14,8 +14,6 @@ See [SETUP.md](SETUP.md) for environment configuration.
 git clone https://github.com/{{GITHUB_OWNER}}/{{GITHUB_REPO}}.git
 cd {{GITHUB_REPO}}
 {{INSTALL_COMMAND}}
-pre-commit install
-pre-commit install --hook-type commit-msg
 ```
 
 ---
@@ -94,7 +92,7 @@ Scope should be the service, module, or area affected:
 - Run `terraform fmt -recursive` before committing
 - Never run `terraform apply` locally — CI/CD only
 
-See [GUIDELINES.md](GUIDELINES.md) for full coding standards.
+See [STANDARDS.md](STANDARDS.md) for full coding standards and principles.
 
 ---
 
@@ -103,19 +101,13 @@ See [GUIDELINES.md](GUIDELINES.md) for full coding standards.
 ### Before Opening a PR
 
 1. **Branch from `{{DEV_BRANCH}}`** (not `{{DEFAULT_BRANCH}}`)
-2. **Run pre-commit hooks:**
-
-   ```bash
-   pre-commit run --all-files
-   ```
-
-3. **Run tests:**
+2. **Run tests:**
 
    ```bash
    {{TEST_COMMAND}}
    ```
 
-4. **Update documentation** if behavior changes
+3. **Update documentation** if behavior changes
 
 ### PR Requirements
 
@@ -160,48 +152,29 @@ Aim for meaningful coverage, not 100%. Focus on:
 
 ---
 
-## Pre-commit Hooks
+## Bug Reports
 
-We use [pre-commit](https://pre-commit.com/) to enforce standards:
+Report bugs as **GitHub Issues** using the `bug` label:
 
-### Installation
+1. Search existing issues to avoid duplicates
+2. Include: steps to reproduce, expected behavior, actual behavior
+3. Add a priority label: `P0` (system down), `P1` (core broken), `P2` (degraded), `P3` (minor)
+4. The AI Bug Hunter agent can help investigate — switch to it from the agent dropdown
 
-```bash
-pip install pre-commit
-pre-commit install
-pre-commit install --hook-type commit-msg
-```
+## Feature Requests & Backlog
 
-### Configured Hooks
+Request features and track work as **GitHub Issues**:
 
-| Hook | Purpose |
-|------|---------|
-| `trailing-whitespace` | Remove trailing whitespace |
-| `end-of-file-fixer` | Ensure files end with newline |
-| `check-yaml` | Validate YAML syntax |
-| `check-json` | Validate JSON syntax |
-| `commitlint` | Enforce conventional commits |
-| {{ADDITIONAL_HOOK}} | {{HOOK_PURPOSE}} |
-
-### Running Manually
-
-```bash
-# Run on staged files
-pre-commit run
-
-# Run on all files
-pre-commit run --all-files
-
-# Run specific hook
-pre-commit run <hook-id>
-```
-
----
+1. Open a GitHub Issue with the `enhancement` label
+2. Describe the problem you're solving (not just the solution)
+3. The AI PRD Architect agent can help structure feature requests into full PRDs
+4. Sprint planning and prioritization happens in **GitHub Projects**
 
 ## Getting Help
 
 - **Documentation:** Check `docs/` for guides and references
-- **Bugs:** Report in `docs/BUGS.md` or open a GitHub issue
+- **Standards:** See [STANDARDS.md](STANDARDS.md) for coding principles and conventions
+- **MCP Setup:** See [MCP_SETUP.md](MCP_SETUP.md) for AI tool configuration
 - **Questions:** {{COMMUNICATION_CHANNEL}} (e.g., Slack, Discord, GitHub Discussions)
 
 ---
